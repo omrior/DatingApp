@@ -36,6 +36,7 @@ namespace API
                 options.UseSqlite(_config.GetConnectionString("DefaultConnection"));
             });
             services.AddControllers();
+            services.AddCors();
 
         }
 
@@ -51,6 +52,8 @@ namespace API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));  // It is important to place UseCors between the routing and authorization!!!
 
             app.UseAuthorization();
 
