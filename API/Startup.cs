@@ -53,7 +53,7 @@ namespace API
 
             app.UseRouting();
 
-            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));  // It is important to place UseCors between the routing and authorization!!!
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));  // It is important to place UseCors between the routing and authorization!!!
 
             app.UseAuthorization();
 
