@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule} from '@angular/common/http';  // Added
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';  // Added
 import {FormsModule} from '@angular/forms'
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,7 +20,8 @@ import { NavComponent } from './nav/nav.component';
     AppRoutingModule,
     HttpClientModule,  // Added
     BrowserAnimationsModule, //Added 
-    FormsModule
+    FormsModule,
+    BsDropdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
