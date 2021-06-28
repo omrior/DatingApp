@@ -3,20 +3,22 @@
     <div class="container">
         <!--mb-2 mb-md-0-->
         <a class="navbar-brand" routerLink='/' routerLinkActive='active'>Omri's App</a>
-            <ul class="navbar-nav me-auto" *ngIf="accountService.currentUser$ | async">
-                <li class="nav-item">
-                    <a class="nav-link" routerLink='/members' routerLinkActive='active'>Match</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink='/lists' routerLinkActive='active'>Lists</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink='/messages' routerLinkActive='active'>Messages</a>
-                </li>
+            <ul class="navbar-nav me-auto"> <!--*ngIf="accountService.currentUser$ | async"-->
+                <ng-container *ngIf="accountService.currentUser$ | async">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink='/members' routerLinkActive='active'>Match</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink='/lists' routerLinkActive='active'>Lists</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink='/messages' routerLinkActive='active'>Messages</a>
+                    </li>
+                </ng-container>
             </ul>
 
-            <div class="dropdown" *ngIf="accountService.currentUser$ | async" dropdown>
-                <a class="dropdown-toggle text-light" dropdownToggle>Welcome user</a>
+            <div class="dropdown" *ngIf="accountService.currentUser$ | async as user" dropdown>
+                <a class="dropdown-toggle text-light" dropdownToggle>Welcome {{user.username | titlecase}}</a>
                 <div class="dropdown-menu mt-3" *dropdownMenu>
                     <a class="dropdown-item">Edit profile</a>
                     <div class="dropdown-divider"></div>
