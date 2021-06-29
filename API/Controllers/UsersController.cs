@@ -11,6 +11,7 @@ namespace API.Controllers
 {
     //[ApiController]
     //[Route("api/[controller]")]
+    [Authorize]
     public class UsersController : BaseApiController
     {
         private readonly DataContext _context;
@@ -21,7 +22,6 @@ namespace API.Controllers
 
         // Getting an Http request and returns a list of all the users ASYNCHRONOUSLY
         [HttpGet]
-        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers() 
         {
             return await _context.Users.ToListAsync();
@@ -29,7 +29,6 @@ namespace API.Controllers
 
         // Getting an Http request and returning a specific user Asynchronously
         // api/users/3
-        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<AppUser>> GetUser(int id) 
         {
