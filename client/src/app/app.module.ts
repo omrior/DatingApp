@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule} from '@angular/common/http';  // Added
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';  // Added
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';  // Added
 import {FormsModule} from '@angular/forms'
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -17,6 +17,8 @@ import { MemberListComponent } from './members/member-list/member-list.component
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from './_modules/shared.module';
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+import { ErrorInterceptor } from './_interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { SharedModule } from './_modules/shared.module';
     ListsComponent,
     MessagesComponent,
     MemberListComponent,
-    MemberDetailComponent
+    MemberDetailComponent,
+    TestErrorsComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,9 @@ import { SharedModule } from './_modules/shared.module';
     FormsModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
